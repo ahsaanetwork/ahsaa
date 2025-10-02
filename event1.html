@@ -15,19 +15,32 @@
     .container {
       position: relative;
       width: 100%;
-      height: 100vh; /* full layar */
+      height: 100vh;
       overflow: hidden;
-      background: black; /* biar rapi saat contain */
     }
 
-    /* Gambar background full tanpa terpotong */
-    .container img.bg {
+    /* Blur background */
+    .container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      object-fit: contain;   /* seluruh gambar terlihat */
+      background: url('https://i.imgur.com/CubIh5r.png') center center / cover no-repeat;
+      filter: blur(20px);
+      transform: scale(1.1); /* biar blur full */
+      z-index: 0;
+    }
+
+    /* Gambar utama (tetap full terlihat) */
+    .container img.bg {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: contain; 
       object-position: center;
-      display: block;
-      background: black;     /* sisa ruang jadi hitam */
+      z-index: 1;
     }
 
     /* Teks Subscribe to Watch */
@@ -38,12 +51,13 @@
       font-size: 26px;
       font-weight: bold;
       text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+      z-index: 2;
     }
 
     /* Tombol Watch Live */
     .btn-watch {
       position: absolute;
-      bottom: 30px;
+      bottom: 80px; /* agak naik dari bawah */
       left: 20px;
       display: flex;
       align-items: center;
@@ -51,10 +65,11 @@
       color: #fff;
       padding: 14px 24px;
       border-radius: 30px;
-      font-size: 20px; /* diperbesar */
+      font-size: 20px;
       font-weight: bold;
       text-decoration: none;
       transition: background 0.3s;
+      z-index: 2;
     }
     .btn-watch:hover { background: #b20710; }
     .btn-watch .icon { margin-right: 10px; font-size: 22px; }
@@ -64,6 +79,7 @@
       position: absolute;
       top: 20px;
       right: 20px;
+      z-index: 2;
     }
     .logo img {
       height: 50px;
