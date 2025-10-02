@@ -299,24 +299,31 @@ header {
 
 </div>
 
-<script>
-  // Users Online randomizer
-  let userCount = 7403;
-  const userCountEl = document.getElementById("user-count");
-  function updateUsers() {
-    let change = Math.floor(Math.random() * 16) - 5;
-    userCount = Math.max(1000, userCount + change);
-    if(userCountEl){
+  <div id="online-users" style="
+    text-align:center;
+    font-size:18px;
+    font-weight:bold;
+    color:#fff;
+    margin: 30px 0;">
+    <span id="user-count">7403</span> Users Online Now
+  </div>
+
+  <script>
+    // Angka awal
+    let userCount = 7403;
+    const userCountEl = document.getElementById("user-count");
+
+    function updateUsers() {
+      // Random naik/turun -5 sampai +10
+      let change = Math.floor(Math.random() * 16) - 5;
+      userCount = Math.max(1000, userCount + change); // minimal 1000 biar gak turun jauh
       userCountEl.textContent = userCount.toLocaleString();
     }
-  }
-  setInterval(updateUsers, 3000);
-</script>
 
-<!-- Users Online Display -->
-<div id="online-users">
-  <span id="user-count">7403</span> Users Online Now
-</div>
+    // Update tiap 3 detik
+    setInterval(updateUsers, 3000);
+  </script>
+
 
 <!-- Bottom Logo -->
 <div id="bottom-logo">
